@@ -1,1 +1,0 @@
-console.log("1"),document.write("ok");
