@@ -2,7 +2,7 @@
 define('app',function(require, exports, module) {
 	'use strict';
   // 通过 require 引入依赖
-  var loader = require('module/loader');
+  var loader = require('loader');
 
   loader.init({
   	CB:function(){

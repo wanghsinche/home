@@ -1,1 +1,0 @@
-seajs.config({base:"./js/",paths:{cdn:"https://cdn.bootcss.com"},alias:{$:"cdn/zepto/1.0rc1/zepto.min.js"},preload:["$"]}),seajs.use(["$","app"]);

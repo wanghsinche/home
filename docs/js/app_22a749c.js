@@ -1,1 +1,0 @@
-define("app",function(o){"use strict";var n=o("module/loader");n.init({CB:function(){console.log("done")}}),console.log($)});
