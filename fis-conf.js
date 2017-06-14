@@ -1,6 +1,6 @@
 <!--param start-->
     //修改cdn的绝对路径（正式环境）
-    fis.set('cdn-path-release','https://wanghsinche.github.io/myGitpage/');
+    fis.set('cdn-path-release','https://wanghsinche.github.io/home/');
 <!--end-->
 //配置通用
 fis.set('project.files', ['src/**']);
