@@ -76,15 +76,15 @@ fis.media('release')
     .match('**', {
         charset : fis.get("charset"),
         deploy: [fis.plugin('encoding'),fis.plugin('local-deliver', {
-            to: './release',
-            exclude : ['index.html','inline','temp_file','config']
-        })]
-    })
-    .match('index.html', {
-    	
-        useHash: false,
-        deploy: [fis.plugin('encoding'),fis.plugin('local-deliver', {
-            to: './'
-            
+            to: './docs/',
+            exclude : ['inline','temp_file','config']
         })]
     });
+    // .match('index.html', {
+    	
+        // useHash: false,
+        // deploy: [fis.plugin('encoding'),fis.plugin('local-deliver', {
+            // to: './'
+            
+        // })]
+    // });
