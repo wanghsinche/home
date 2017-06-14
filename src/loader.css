@@ -1,0 +1,129 @@
+/* Universal styling */
+[class^="shaft-load"] {
+  margin: 50px auto;
+  width: 60px;
+  height: 30px;
+}
+[class^="shaft-load"] > div {
+  float: left;
+  background: #4d4d52;
+  height: 100%;
+  width: 5px;
+  margin-right: 1px;
+  display: inline-block;
+}
+[class^="shaft-load"] .shaft1 {
+  -webkit-animation-delay: 0.05s;
+  -moz-animation-delay: 0.05s;
+  -o-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+}
+[class^="shaft-load"] .shaft2 {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  -o-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+[class^="shaft-load"] .shaft3 {
+  -webkit-animation-delay: 0.15s;
+  -moz-animation-delay: 0.15s;
+  -o-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+[class^="shaft-load"] .shaft4 {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+[class^="shaft-load"] .shaft5 {
+  -webkit-animation-delay: 0.25s;
+  -moz-animation-delay: 0.25s;
+  -o-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+[class^="shaft-load"] .shaft6 {
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -o-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+[class^="shaft-load"] .shaft7 {
+  -webkit-animation-delay: 0.35s;
+  -moz-animation-delay: 0.35s;
+  -o-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+[class^="shaft-load"] .shaft8 {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  -o-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+[class^="shaft-load"] .shaft9 {
+  -webkit-animation-delay: 0.45s;
+  -moz-animation-delay: 0.45s;
+  -o-animation-delay: 0.45s;
+  animation-delay: 0.45s;
+}
+[class^="shaft-load"] .shaft10 {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+/* Shaft 1 */
+.shaft-load > div {
+  background-color: #464542;
+  -webkit-animation: loading 1.5s infinite ease-in-out;
+  -moz-animation: loading 1.5s infinite ease-in-out;
+  -o-animation: loading 1.5s infinite ease-in-out;
+  animation: loading 1.5s infinite ease-in-out;
+  -webkit-transform: scaleY(0.05) translateX(-10px);
+  -moz-transform: scaleY(0.05) translateX(-10px);
+  -ms-transform: scaleY(0.05) translateX(-10px);
+  -o-transform: scaleY(0.05) translateX(-10px);
+  transform: scaleY(0.05) translateX(-10px);
+}
+
+@-webkit-keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background-color: #878580;
+  }
+}
+@-moz-keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background-color: #878580;
+  }
+}
+@-o-keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background-color: #878580;
+  }
+}
+@keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background-color: #878580;
+  }
+}

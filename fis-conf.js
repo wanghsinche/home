@@ -7,7 +7,6 @@ fis.set('project.files', ['src/**']);
 fis.set('project.ignore', ['node_modules/**', 'dist/**', 'release/**', 'README.md' , 'local/**' ,'.git/**', 'fis-conf.js', 'bakcup/**']);
 fis.set('charset', 'utf-8');
 fis.set('project.charset', 'utf-8');
-
 fis.match('**.less', {
     parser: fis.plugin('less'), // invoke `fis-parser-less`,
     rExt: '.css'
@@ -72,19 +71,13 @@ fis.media('release')
     })
     .match('*.{css,less}',{
         useSprite : true
-    })
+    })	
     .match('**', {
         charset : fis.get("charset"),
-        deploy: [fis.plugin('encoding'),fis.plugin('local-deliver', {
+        deploy: [
+		fis.plugin('encoding'),fis.plugin('local-deliver', {
             to: './docs/',
             exclude : ['inline','temp_file','config']
         })]
     });
-    // .match('index.html', {
-    	
-        // useHash: false,
-        // deploy: [fis.plugin('encoding'),fis.plugin('local-deliver', {
-            // to: './'
-            
-        // })]
-    // });
+   
