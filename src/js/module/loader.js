@@ -14,8 +14,18 @@ define('loader',function(require, exports, module) {
   	loaderEle.style.display = loaderEle.style.display === 'none'?'block':loaderEle.style.display;
   	app.style.display = 'none';
   	setTimeout(function(){
-	  	loaderEle.style.display = 'none';
-	  	app.style.display = 'block';
+      loaderEle.className += 'animated zoomOut';
+      loaderEle.addEventListener('webkitAnimationEnd', function cb(){
+        loaderEle.style.display = 'none';
+        app.style.display = 'block';
+        loaderEle.removeEventListener('webkitAnimationEnd',cb);
+      });  //  Chrome, Safari 和 Opera
+      loaderEle.addEventListener("animationend", function cb(){
+        loaderEle.style.display = 'none';
+        app.style.display = 'block';
+        loaderEle.removeEventListener('animationend',cb);
+      });        // 标准语法
+	  	
 	  	if(typeof opts.CB === 'function'){
 	  		opts.CB();
 	  	}

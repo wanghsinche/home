@@ -76,9 +76,16 @@ fis.media('release')
         charset : fis.get("charset"),
         deploy: [
         function (options, modified, total, next) {
-            var shelljs = require('shelljs');
-            shelljs.rm('-rf', './docs/');
+            // var shelljs = require('shelljs');
+            // shelljs.rm('-rf', './docs/');
+            var exec = require('child_process').execSync;
+            var cmd = 'rmdir /s /q .\\docs\\';
+            try{exec(cmd);}catch(e){
+                console.log(e.Error);
+            }
+                        
             next();
+
         },
 		fis.plugin('encoding'),fis.plugin('local-deliver', {
             to: './docs/',
