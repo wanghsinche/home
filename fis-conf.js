@@ -75,6 +75,11 @@ fis.media('release')
     .match('**', {
         charset : fis.get("charset"),
         deploy: [
+        function (options, modified, total, next) {
+            var shelljs = require('shelljs');
+            shelljs.rm('-rf', './docs/');
+            next();
+        },
 		fis.plugin('encoding'),fis.plugin('local-deliver', {
             to: './docs/',
             exclude : ['inline','temp_file','config']

@@ -8,12 +8,9 @@
 
     // 设置别名，方便调用   
     alias: {
-      'jquery': 'cdn/jquery/3.2.1/jquery.min.js'
+      '$': 'cdn/zepto/1.0rc1/zepto.min.js',
     },
-    preload: ["jquery"]
+    preload: ["$"]
   });
 
-
-    seajs.use('app',function(app){
-        app.doSomething();
-    });
+    seajs.use(['$','app']);
