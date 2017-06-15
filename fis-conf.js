@@ -41,15 +41,7 @@ fis.media('release')
     .match('**.js',{
         postprocessor : fis.plugin('replace',{
             debug : "release"
-        }),
-        optimizer: fis.plugin('uglify-js',{
-            output : {
-                ascii_only : true
-            }
         })
-    })
-    .match('**.html:js',{
-        optimizer: fis.plugin('uglify-js')
     })
     .match('*.{css,less}',{
         optimizer: fis.plugin('clean-css')
