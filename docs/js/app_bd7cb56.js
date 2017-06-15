@@ -128,8 +128,9 @@ var camera, scene, renderer;
 				scene.add( mesh );
 
 
+				renderer = window.WebGLRenderingContext? new THREE.WebGLRenderer(): new THREE.CanvasRenderer();
 
-				renderer = new THREE.WebGLRenderer();
+				// renderer = new THREE.WebGLRenderer();
 
 				renderer.setPixelRatio( window.devicePixelRatio );
 

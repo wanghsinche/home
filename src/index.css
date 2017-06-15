@@ -1,4 +1,4 @@
-@import './loader.css';
+  @import url('./loader.css?__inline');
 html,body{
 	position: relative;
 	width: 100%;
