@@ -8,12 +8,12 @@ __inline('./module/vr.js');
   var loader = require('loader');
   var vr = require('vr');
   loader.load([
-       __uri('../../img/cube/px.jpg'),
-       __uri('../../img/cube/nx.jpg'),
-       __uri('../../img/cube/py.jpg'),
-       __uri('../../img/cube/ny.jpg'),
-       __uri('../../img/cube/pz.jpg'),
-       __uri('../../img/cube/nz.jpg')
+       __uri('../img/cube/px.jpg'),
+       __uri('../img/cube/nx.jpg'),
+       __uri('../img/cube/py.jpg'),
+       __uri('../img/cube/ny.jpg'),
+       __uri('../img/cube/pz.jpg'),
+       __uri('../img/cube/nz.jpg')
     ]);
   loader.init({
     CB: function() {

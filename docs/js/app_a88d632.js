@@ -402,12 +402,12 @@ define('vr', function(require, exports, module) {
   var loader = require('loader');
   var vr = require('vr');
   loader.load([
-       '../../img/cube/px.jpg',
-       '../../img/cube/nx.jpg',
-       '../../img/cube/py.jpg',
-       '../../img/cube/ny.jpg',
-       '../../img/cube/pz.jpg',
-       '../../img/cube/nz.jpg'
+       'https://wanghsinche.github.io/home//img/cube/px_304901d.jpg',
+       'https://wanghsinche.github.io/home//img/cube/nx_37c50a0.jpg',
+       'https://wanghsinche.github.io/home//img/cube/py_a7ac7c1.jpg',
+       'https://wanghsinche.github.io/home//img/cube/ny_557a926.jpg',
+       'https://wanghsinche.github.io/home//img/cube/pz_b267e4b.jpg',
+       'https://wanghsinche.github.io/home//img/cube/nz_d59231f.jpg'
     ]);
   loader.init({
     CB: function() {
