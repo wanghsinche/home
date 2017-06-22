@@ -4,6 +4,9 @@ define('loader', function(require, exports, module) {
   // 通过 require 引入依赖
   var resls = [];
   // 通过 exports 对外提供接口
+  exports.load = function(ls) {
+      resls = ls;
+  };  
   exports.init = function(opts) {
     var loaderEle, app;
     opts = opts || {};
@@ -50,14 +53,13 @@ define('loader', function(require, exports, module) {
       }
 
     }
-    exports.load = function(ls) {
-      resls = ls;
-    };
+    
   };
 });;
 define('vr', function(require, exports, module) {
+    'use strict';
     var camera, scene, renderer, cssrender, cssscene, texture_placeholder;
-    var elels, elelsinfo = [];
+    var elels, elelsinfo = [], cubemesh0,cubemesh1,cubemesh2,cubemesh3;
     var controls, target;
     var lon = 90,
         lat = 0,
@@ -112,17 +114,15 @@ define('vr', function(require, exports, module) {
             y = pos[1],
             z = pos[2];
         //坐标系很奇怪，算不出来，干脆不算了
-        minor = x*x+z*z;
-        if(minor === 0){
-            if(y>0){
-                rot[0] = -Math.PI/2;
+        minor = x * x + z * z;
+        if (minor === 0) {
+            if (y > 0) {
+                rot[0] = -Math.PI / 2;
+            } else {
+                rot[0] = Math.PI / 2;
             }
-            else{
-                rot[0] = Math.PI/2;
-            }
-        }
-        else{
-            rot[0] = -Math.atan(y/Math.sqrt(minor));
+        } else {
+            rot[0] = -Math.atan(y / Math.sqrt(minor));
         }
 
         if (x === 0) {
@@ -133,7 +133,7 @@ define('vr', function(require, exports, module) {
             }
 
         } else {
-            rot[1] = Math.PI/2-Math.atan(z / x);
+            rot[1] = Math.PI / 2 - Math.atan(z / x);
         }
 
         return rot;
@@ -170,11 +170,13 @@ define('vr', function(require, exports, module) {
         return elels;
     }
 
+
+
     function loadThreeJS(cb) {
         var tjs = document.createElement('script');
         var tjsPlugins = [
-            'https://wanghsinche.github.io/home//js/lib/DeviceOrientationControls_781a9e5.js',
-            'https://wanghsinche.github.io/home//js/lib/CSS3DRenderer_ecc218f.js'
+            'https://wanghsinche.github.io/home//js/lib/DeviceOrientationControls_1325244.js',
+            'https://wanghsinche.github.io/home//js/lib/CSS3DRenderer_53eb6f3.js'
         ];
         tjs.onload = function() {
             var counter = 0,
@@ -191,10 +193,22 @@ define('vr', function(require, exports, module) {
                 document.getElementsByTagName('body')[0].appendChild(tmpscr);
             });
         };
-        tjs.src = 'https://wanghsinche.github.io/home//js/lib/three.min_422afa7.js';
+        tjs.src = 'https://wanghsinche.github.io/home//js/lib/three.min_6edb4af.js';
         document.getElementsByTagName('body')[0].appendChild(tjs);
     }
-
+    function getMaterials() {
+        var materials = [];
+        var tmp;
+        for (var i = 0; i < 6; i++) {
+            // tmp =  loadTexture( __uri('../../img/crate.gif') );
+            tmp = new THREE.MeshBasicMaterial({
+                color: Math.random() * 0xffffff,
+                overdraw: 0.5
+            });
+            materials.push(tmp);
+        }
+        return materials;
+    }
     function loadTexture(path) {
         var texture = new THREE.Texture(texture_placeholder);
         var material = new THREE.MeshBasicMaterial({
@@ -215,17 +229,17 @@ define('vr', function(require, exports, module) {
 
         var i;
         target = new THREE.Vector3();
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000);
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
         controls = new THREE.DeviceOrientationControls(camera);
         scene = new THREE.Scene();
         cssscene = new THREE.Scene();
         //create screen
-        texture_placeholder = document.createElement( 'canvas' );
+        texture_placeholder = document.createElement('canvas');
         texture_placeholder.width = 1024;
         texture_placeholder.height = 1024;
-        var context = texture_placeholder.getContext( '2d' );
+        var context = texture_placeholder.getContext('2d');
         context.fillStyle = 'rgb( 200, 200, 200 )';
-        context.fillRect( 0, 0, texture_placeholder.width, texture_placeholder.height );
+        context.fillRect(0, 0, texture_placeholder.width, texture_placeholder.height);
 
         var materials = [
             loadTexture(sides[0].url), // right
@@ -239,6 +253,21 @@ define('vr', function(require, exports, module) {
         mesh.scale.x = -1;
         scene.add(mesh);
 
+        var cube = new THREE.BoxGeometry(50, 50, 50);
+        var cubematerial = getMaterials();
+        cubemesh0 = new THREE.Mesh(cube, cubematerial);
+
+        cubemesh1= cubemesh0.clone();
+        cubemesh2= cubemesh0.clone();
+        cubemesh3= cubemesh0.clone();
+        cubemesh1.translateZ(-200);
+        cubemesh3.translateX(-200);
+        cubemesh2.translateZ(200);
+        cubemesh0.translateX(200);
+        scene.add(cubemesh0);
+        scene.add(cubemesh1);
+        scene.add(cubemesh2);
+        scene.add(cubemesh3);
 
         // clickable elements
         elels = createClickEles();
@@ -252,7 +281,7 @@ define('vr', function(require, exports, module) {
 
 
         renderer = new THREE.WebGLRenderer();
-        renderer.setPixelRatio( window.devicePixelRatio );
+        renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.domElement.style.zIndex = 1;
         cssrender = new THREE.CSS3DRenderer();
@@ -309,6 +338,22 @@ define('vr', function(require, exports, module) {
                 target.z = Math.sin(phi) * Math.sin(theta);
                 camera.lookAt(target);
             }
+
+            cubemesh0.rotation.x += 0.005;
+            cubemesh0.rotation.y += 0.01;
+            cubemesh1.rotation.x += 0.005;
+            cubemesh1.rotation.y += 0.01;
+            cubemesh2.rotation.x += 0.005;
+            cubemesh2.rotation.y += 0.01;  
+            cubemesh3.rotation.x += 0.005;
+            cubemesh3.rotation.y += 0.01;                                    
+            // if (cubemesh.rotation.x > Math.PI*2) {
+            //     cubemesh.rotation.x = 0;
+            // }
+            // if (cubemesh.rotation.y > Math.PI*2) {
+            //     cubemesh.rotation.y = 0;
+            // }
+
             renderer.render(scene, camera);
             cssrender.render(cssscene, camera);
         }
@@ -356,6 +401,14 @@ define('vr', function(require, exports, module) {
   // 通过 require 引入依赖
   var loader = require('loader');
   var vr = require('vr');
+  loader.load([
+       '../../img/cube/px.jpg',
+       '../../img/cube/nx.jpg',
+       '../../img/cube/py.jpg',
+       '../../img/cube/ny.jpg',
+       '../../img/cube/pz.jpg',
+       '../../img/cube/nz.jpg'
+    ]);
   loader.init({
     CB: function() {
       console.log($);
@@ -366,7 +419,7 @@ define('vr', function(require, exports, module) {
       //首饰
       className: 'vrclickele',
       id: 'vrele0',
-      position: [-450, -110, 20],
+      position: [0, 100, 200],
       rotation: [0, Math.PI / 2, 0], //vr.lookAtOri([-450, -110, 10]),
       cb: function() {
         alert('css渲染元素');
@@ -375,7 +428,7 @@ define('vr', function(require, exports, module) {
       //鼓
       className: 'vrclickele',
       id: 'vrele1',
-      position: [-80, -100, 400],
+      position: [0, 0, -200],
       rotation: [0, 0, 0], //vr.lookAtOri([-120, -100, 400]),
       cb: function() {
         alert('css渲染元素');
@@ -384,8 +437,8 @@ define('vr', function(require, exports, module) {
       //桌
       className: 'vrclickele',
       id: 'vrele2',
-      position: [0, -100, -400],
-      rotation: [0, 0, 0], //vr.lookAtOri([-350, -0, 400]),//[0,Math.PI/6,0],
+      position: [400, 0, 0],
+      rotation: [0, Math.PI / 2, 0], //vr.lookAtOri([-350, -0, 400]),//[0,Math.PI/6,0],
       cb: function() {
         alert('css渲染元素');
       }
@@ -393,8 +446,8 @@ define('vr', function(require, exports, module) {
       //琴
       className: 'vrclickele',
       id: 'vrele3',
-      position: [-120, -200, 450],
-      rotation: [0, -Math.PI / 18, 0], //vr.lookAtOri([-120, -100, 400]),
+      position: [-120, 0, 0],
+      rotation: [0, -Math.PI / 2, 0], //vr.lookAtOri([-120, -100, 400]),
       cb: function() {
         alert('css渲染元素');
       }
@@ -408,9 +461,5 @@ define('vr', function(require, exports, module) {
     vr.toggleDevice();
   });
 
-  // 通过 exports 对外提供接口
-  // exports.doSomething = function(){
-
-  // };
 
 })(require, $);
