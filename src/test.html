@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>xx</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{
+			font-size: 62px;
+		}
+		#app{
+			padding-bottom: 100px;
+		}
+		P{
+			animation: 1s show forwards;
+		}
+		@keyframes show{
+			from {
+				opacity: 0;
+			}
+			to{
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<div id="loading">......</div>
+	</div>
+	<script>
+	    (function iief(){
+        'use strict';
+            var app = document.getElementById('app');
+            var lastStamp = Date.now();
+            var done = true;
+            var loading = document.getElementById('loading');
+            loading.style.display = 'none';
+		    setTimeout(function ii(){
+		    	var curr;
+			 if(document.documentElement.scrollHeight - window.scrollY-window.innerHeight < 50 && done){
+			 	console.log(1);
+			 	curr = Date.now();
+			 	done = false;
+			 	loading.style.display = 'block';
+			 	setTimeout(function(){
+			 	console.log(2);
+			 	for(var i =0;i<1;i++){
+					var p = document.createElement('p');
+                	lastStamp = Date.now();
+                // event.preventDefault();
+                	p.textContent = curr;
+                	app.insertBefore(p,loading);
+			 		// app.appendChild(p);
+			 	}
+			 	loading.style.display = 'none';
+			 	done = true;
+			 	},2000);
+			 	// window.scrollY -= 5;
+			 }
+			 setTimeout(ii,1000);
+		    },1000);
+	    })();
+		
+	</script>
+</body>
+</html>
